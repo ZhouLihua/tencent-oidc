@@ -30,5 +30,7 @@ jobs:
           region: ap-guangzhou
       - name: Test Login
         run: |
-          tencentcloud-cli sts GetCallerIdentity
+          pip install tccli
+          tccli cam GetRole --region ap-guangzhou
+       
 
