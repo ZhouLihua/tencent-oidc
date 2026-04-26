@@ -1,0 +1,28 @@
+name: Tencent Cloud OIDC Example
+on: [push]
+
+permissions:
+  id-token: write # Required to request the OIDC JWT token
+  contents: read  # Required for actions/checkout
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Tencent Cloud
+        uses: everpcpc/actions/authenticate-to-tencent-cloud@v1
+        with:
+          # Replace with your CAM Role Resource Name (ARN)
+          role-arn: qcs::cam::uin/12345678:roleName/your-role-name
+          # Replace with your Tencent Cloud Account ID
+          account-id: '12345678'
+          # Optional: OIDC provider name in Tencent Cloud, default is github
+          # provider-name: github
+          
+      - name: Test Login
+        run: |
+          tencentcloud-cli sts GetCallerIdentity
+
