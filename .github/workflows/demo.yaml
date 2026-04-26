@@ -28,9 +28,9 @@ jobs:
           oidc-provider-id: github-provider
           audience: sts.cloud.tencent.com 
           region: ap-guangzhou
-      - name: Test Login
+      - name: verify account and  permissions
         run: |
-          pip install tccli
+          pip install tccli -q
           tccli sts GetCallerIdentity
           tccli cvm DescribeInstances --region ap-guangzhou
        
