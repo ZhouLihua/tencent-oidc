@@ -31,6 +31,7 @@ jobs:
       - name: Test Login
         run: |
           pip install tccli
-          tccli cam GetRole --region ap-guangzhou
+          tccli sts GetCallerIdentity
+          tccli cvm DescribeInstances --region ap-guangzhou
        
 
